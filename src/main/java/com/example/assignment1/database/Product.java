@@ -45,6 +45,9 @@ public class Product {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime updateDate;
 
+    public Product() {
+    }
+
     public Product(String name,
                    String thumbnail,
                    double originalPrice,
