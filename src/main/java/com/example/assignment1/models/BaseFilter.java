@@ -1,8 +1,8 @@
 package com.example.assignment1.models;
 
 public class BaseFilter {
-    private int page;
-    private int itemPerPage;
+    private int page = 1;
+    private int itemPerPage = 20;
 
     public int getPage() {
         return page;
