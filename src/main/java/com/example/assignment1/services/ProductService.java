@@ -41,16 +41,11 @@ public class ProductService {
         List<ProductInfo> productInfos = new ArrayList<>();
         if (!queryResult.isEmpty()) {
             for (Product product : queryResult) {
-                double discount = 0d;
-                if (product.getPrice() < product.getOriginalPrice()) {
-                    discount = (product.getOriginalPrice() - product.getPrice()) * 100d / product.getOriginalPrice();
-                }
                 productInfos.add(new ProductInfo(
                         product.getId(),
                         product.getName(),
                         product.getOriginalPrice(),
                         product.getPrice(),
-                        discount,
                         product.getRate(),
                         product.getThumbnail(),
                         product.getStock(),

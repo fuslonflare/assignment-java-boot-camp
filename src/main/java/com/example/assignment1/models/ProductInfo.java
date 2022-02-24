@@ -10,24 +10,15 @@ public class ProductInfo extends BaseInfo {
     private int stock;
     private int totalReview;
 
-    public ProductInfo(long id, String name, double originalPrice, double price, double discount, double rate, String thumbnail, int stock, int totalReview) {
+    public ProductInfo(long id, String name, double originalPrice, double price, double rate, String thumbnail, int stock, int totalReview) {
         this.setId(id);
         this.name = name;
         this.originalPrice = originalPrice;
         this.price = price;
-        this.discount = discount;
         this.rate = rate;
         this.thumbnail = thumbnail;
         this.stock = stock;
         this.totalReview = totalReview;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
     }
 
     public String getName() {
@@ -52,6 +43,18 @@ public class ProductInfo extends BaseInfo {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getDiscount() {
+        if (originalPrice > price) {
+            return (originalPrice - price) * 100d / originalPrice;
+        } else {
+            return 0d;
+        }
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public double getRate() {
