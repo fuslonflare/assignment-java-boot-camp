@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -168,5 +169,70 @@ class ProductServiceTest {
         assertEquals(1, actualResult.getItems().size());
         assertEquals(2, actualResult.getTotalPage());
         assertEquals(3, actualResult.getTotalItems());
+    }
+
+    @Test
+    void get_with_invalidId() {
+        // Arrange
+        when(productRepository.findById(-1L)).thenReturn(Optional.empty());
+
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+
+        // Act
+        ProductInfo result = productService.get(-1L);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    void get_with_notExistId() {
+        // Arrange
+        when(productRepository.findById(2022L)).thenReturn(Optional.empty());
+
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+
+        // Act
+        ProductInfo result = productService.get(2022L);
+
+        // Assert
+        assertNull(result);
+    }
+
+    @Test
+    void get_with_id9() {
+        // Arrange
+        Product product = new Product(
+                "Kashiwa พัดลมตั้งโต๊ะ (คละสี) ขนาด 6 นิ้ว รุ่น KW-07 พัดลมตั้งโต๊ะ พัดลมตัวเล็ก",
+                "https://cf.shopee.co.th/file/712e528da2814c08153e94f784ff89e4",
+                599d, 179d, 4.3d,
+                "คุณสมบัติ\n" +
+                        "- พัดลมตั้งโต๊ะ 6 นิ้ว  เล็กกะทัดรัด พกพาสะดวก \n" +
+                        "- เหมาะสำหรับการระบายความร้อนส่วนบุคคลในระยะใกล้ๆ\n" +
+                        "- ปรับความแรงของพัดลมได้ 2 ระดับ \n" +
+                        "- สามารถปรับก้มเงยหน้าพัดลมได้\n" +
+                        "- สามารถวางไว้บนชั้นวางหรือบนโต๊ะ\n" +
+                        "- กำลังไฟฟ้า 25 วัตต์\n" +
+                        "- ขนาดสินค้า : 20 x 17 x 27 cm. ",
+                9, 42,
+                LocalDateTime.now(), LocalDateTime.now()
+        );
+        product.setId(9L);
+        when(productRepository.findById(9L)).thenReturn(Optional.of(product));
+
+        ProductService productService = new ProductService();
+        productService.setProductRepository(productRepository);
+
+        // Act
+        ProductInfo result = productService.get(9L);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(9L, result.getId());
+        assertTrue(result.getName().contains("พัดลมตั้งโต๊ะ"));
+        assertTrue(result.getDiscount() > 0d);
+        assertFalse(result.getDetail().isEmpty());
     }
 }
