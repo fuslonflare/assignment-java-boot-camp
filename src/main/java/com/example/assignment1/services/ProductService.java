@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -59,6 +60,28 @@ public class ProductService {
         result.setItemPerPage(filter.getItemPerPage());
         result.setTotalItems(totalItem);
         result.setTotalPage(totalPage);
+
+        return result;
+    }
+
+    public ProductInfo get(long id) {
+        ProductInfo result = null;
+
+        Optional<Product> queryResult = productRepository.findById(id);
+        if (queryResult.isPresent()) {
+            Product entity = queryResult.get();
+            result = new ProductInfo(
+                    entity.getId(),
+                    entity.getName(),
+                    entity.getOriginalPrice(),
+                    entity.getPrice(),
+                    entity.getRate(),
+                    entity.getThumbnail(),
+                    entity.getStock(),
+                    entity.getTotalReviewer()
+            );
+            result.setDetail(entity.getDetail());
+        }
 
         return result;
     }
