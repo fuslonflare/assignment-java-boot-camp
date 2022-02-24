@@ -5,9 +5,7 @@ import com.example.assignment1.models.ProductFilter;
 import com.example.assignment1.models.ProductInfo;
 import com.example.assignment1.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -30,4 +28,8 @@ public class ProductController {
         return productService.search(productFilter);
     }
 
+    @GetMapping("/product/{id}")
+    public ProductInfo get(@PathVariable long id) {
+        return productService.get(id);
+    }
 }
