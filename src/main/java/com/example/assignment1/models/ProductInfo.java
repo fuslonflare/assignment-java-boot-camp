@@ -9,6 +9,7 @@ public class ProductInfo extends BaseInfo {
     private String thumbnail;
     private int stock;
     private int totalReview;
+    private String detail;
 
     public ProductInfo(long id, String name, double originalPrice, double price, double rate, String thumbnail, int stock, int totalReview) {
         this.setId(id);
@@ -87,5 +88,13 @@ public class ProductInfo extends BaseInfo {
 
     public void setTotalReview(int totalReview) {
         this.totalReview = totalReview;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }
