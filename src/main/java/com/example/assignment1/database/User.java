@@ -1,8 +1,11 @@
 package com.example.assignment1.database;
 
+import org.hibernate.annotations.Nationalized;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class User {
 
     @Id
@@ -17,9 +20,11 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @Nationalized
     private String firstName;
 
     @Column(nullable = false)
+    @Nationalized
     private String lastName;
 
     @Column(nullable = false)
@@ -31,13 +36,12 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String firstName, String lastName, String phoneNo, List<UserAddress> addresses) {
+    public User(String username, String email, String firstName, String lastName, String phoneNo) {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNo = phoneNo;
-        this.addresses = addresses;
     }
 
     public long getId() {

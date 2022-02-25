@@ -4,6 +4,7 @@ import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 
+@Entity
 public class UserAddress {
 
     @Id
