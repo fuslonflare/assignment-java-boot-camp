@@ -2,7 +2,15 @@ package com.example.assignment1.models;
 
 public class AddProductInfoItem {
 	private int amount;
-	private int productId;
+	private long productId;
+
+	public AddProductInfoItem() {
+	}
+
+	public AddProductInfoItem(int amount, long productId) {
+		this.amount = amount;
+		this.productId = productId;
+	}
 
 	public void setAmount(int amount){
 		this.amount = amount;
@@ -12,11 +20,11 @@ public class AddProductInfoItem {
 		return amount;
 	}
 
-	public void setProductId(int productId){
+	public void setProductId(long productId){
 		this.productId = productId;
 	}
 
-	public int getProductId(){
+	public long getProductId(){
 		return productId;
 	}
 }

@@ -4,9 +4,12 @@ import java.util.List;
 
 public class AddProductToBasketRequest{
 	private List<AddProductInfoItem> addProductInfos;
-	private int userId;
+	private long userId;
 
-	public AddProductToBasketRequest(List<AddProductInfoItem> addProductInfos, int userId) {
+	public AddProductToBasketRequest() {
+	}
+
+	public AddProductToBasketRequest(List<AddProductInfoItem> addProductInfos, long userId) {
 		this.addProductInfos = addProductInfos;
 		this.userId = userId;
 	}
@@ -19,11 +22,11 @@ public class AddProductToBasketRequest{
 		return addProductInfos;
 	}
 
-	public void setUserId(int userId){
+	public void setUserId(long userId){
 		this.userId = userId;
 	}
 
-	public int getUserId(){
+	public long getUserId(){
 		return userId;
 	}
 }
