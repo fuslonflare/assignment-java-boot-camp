@@ -50,6 +50,7 @@ public class UserBasketService {
                     newAmount = productIdToAmount.get(productId);
                 }
                 entity.setAmount(newAmount);
+                userBasketRepository.save(entity);
             }
         }
     }
