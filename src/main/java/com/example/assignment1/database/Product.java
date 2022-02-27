@@ -68,6 +68,30 @@ public class Product {
         this.updateDate = updateDate;
     }
 
+    public Product(long id,
+                   String name,
+                   String thumbnail,
+                   double originalPrice,
+                   double price,
+                   double rate,
+                   String detail,
+                   int totalReviewer,
+                   int stock,
+                   LocalDateTime createDate,
+                   LocalDateTime updateDate) {
+        this.id = id;
+        this.name = name;
+        this.thumbnail = thumbnail;
+        this.originalPrice = originalPrice;
+        this.price = price;
+        this.rate = rate;
+        this.detail = detail;
+        this.totalReviewer = totalReviewer;
+        this.stock = stock;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
     public long getId() {
         return id;
     }
